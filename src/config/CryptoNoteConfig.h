@@ -19,7 +19,11 @@ namespace CryptoNote {
 namespace parameters {
 
 const uint64_t DIFFICULTY_TARGET                             = 60; // seconds
+const uint64_t DIFFICULTY_TARGET_V2                          = 60; // seconds
   
+/* Height to swap to DIFFICULTY_TARGET_V2 */
+const uint64_t DIFFICULTY_TARGET_V2_HEIGHT                   = 500000;
+
 const uint32_t CRYPTONOTE_MAX_BLOCK_NUMBER                   = 500000000;
 const size_t   CRYPTONOTE_MAX_BLOCK_BLOB_SIZE                = 500000000;
 const size_t   CRYPTONOTE_MAX_TX_SIZE                        = 1000000000;
@@ -33,8 +37,15 @@ const size_t   BLOCKCHAIN_TIMESTAMP_CHECK_WINDOW             = 11;
 const uint64_t MONEY_SUPPLY                                  = UINT64_C(10000000000000);
 
 const uint32_t EMISSION_SPEED_FACTOR                         = 23;
+const uint32_t EMISSION_SPEED_FACTOR_V2                      = 24;
 
+  
 static_assert(EMISSION_SPEED_FACTOR    <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
+static_assert(EMISSION_SPEED_FACTOR_V2 <= 8 * sizeof(uint64_t), "Bad EMISSION_SPEED_FACTOR");
+
+ 
+/* Height to swap to EMISSION_SPEED_FACTOR_V2 */
+const uint64_t EMISSION_SPEED_FACTOR_V2_HEIGHT               = 500000;
 
 /* Premine amount */
 const uint64_t GENESIS_BLOCK_REWARD                          = UINT64_C(0);
@@ -119,9 +130,8 @@ static_assert(0 < UPGRADE_VOTING_THRESHOLD && UPGRADE_VOTING_THRESHOLD <= 100, "
 static_assert(UPGRADE_VOTING_WINDOW > 1, "Bad UPGRADE_VOTING_WINDOW");
 
 /* Block heights we are going to have hard forks at */
-const uint64_t FORK_HEIGHTS[] =
 {
-    
+    500000
 };
 
 /* MAKE SURE TO UPDATE THIS VALUE WITH EVERY MAJOR RELEASE BEFORE A FORK */
@@ -168,7 +178,7 @@ const size_t   COMMAND_RPC_GET_BLOCKS_FAST_MAX_COUNT         =  1000;
 
 const int      P2P_DEFAULT_PORT                              =  42067;
 const int      RPC_DEFAULT_PORT                              =  42062;
-const int      SERVICE_DEFAULT_PORT                          =  1337;
+const int      SERVICE_DEFAULT_PORT                          =  1336;
 
 const size_t   P2P_LOCAL_WHITE_PEERLIST_LIMIT                =  1000;
 const size_t   P2P_LOCAL_GRAY_PEERLIST_LIMIT                 =  5000;
@@ -210,7 +220,6 @@ const static   boost::uuids::uuid CRYPTONOTE_NETWORK         =
 };
 
 const char* const SEED_NODES[] = {
-    "5.172.219.174:42067", //sniperviperman
-    "18.221.128.115:42067" //ifernandez
+    "73.139.229.183:42067", // Maayan
 };
 } // CryptoNote
